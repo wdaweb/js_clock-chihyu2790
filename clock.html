@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        .circle {
+            height: 300px;
+            width: 300px;
+            /* border-radius: 50%; */
+
+
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+
+            background: rgb(218, 185, 185);
+
+            filter: drop-shadow(1px 1px 4px rgb(144, 132, 118));
+        }
+
+
+
+
+
+        .point {
+            height: 10px;
+            width: 10px;
+            /* border-radius: 50%; */
+
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            position: absolute;
+            background-color: rgba(48, 45, 42, 0.504);
+
+            z-index: 6;
+        }
+
+        #second {
+            height: 140px;
+            width: 5px;
+
+
+            top: 50%;
+            left: 50%;
+            transform-origin: 50% 0%;
+            /* 不給rotate會歪掉欸，好怪，為啥*/
+            transform: translate(-50%, 0) rotate(0deg);
+
+
+            position: absolute;
+            background-color: rgb(255, 50, 50);
+
+        }
+
+        #minute {
+
+
+            height: 140px;
+            width: 5px;
+            border-radius: 10%;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-origin: 50% 0%;
+            transform: translate(-50%, 0) rotate(0deg);
+
+
+            background-color: rgb(133, 255, 46);
+        }
+
+        #hour {
+            content: '';
+
+            height: 70px;
+            width: 5px;
+            border-radius: 10%;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-origin: 50% 0%;
+            transform: translate(-50%, 0) rotate(0deg);
+
+            background-color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 秒針接收 -->
+    <div class="circle">
+        <div class="point"></div>
+        <div id="second"></div>
+        <div id="minute"></div>
+        <div id="hour"></div>
+    </div>
+    <script>
+        let flag = true
+        var minuted = 0
+        var houred = 0
+        function timer() {
+            const now = new Date()
+
+            const seconds = now.getSeconds()
+            const minutes = now.getMinutes()
+            const hours = now.getHours()
+
+            const second = document.getElementById('second')
+            const minute = document.getElementById('minute')
+            const hour = document.getElementById('hour')
+
+
+            // 因為我初始是在180所以要再補180歸零，再加上數值。
+            // 如果想要分和小時是用緩慢的加，那就要用秒。
+            // 概念:我加上一秒 = 加上1/60分 = 1/3600小時
+            // 如何本來的時間加上秒數:第一次呼叫的時候做丟入小時和分鐘，之後就不再丟入。全域變數?
+            if (flag == true) {
+                second.style.transform = `translate(-50%, 0) rotate(${180 + seconds * 6}deg)`
+                minute.style.transform = `translate(-50%, 0) rotate(${180 + minutes * 6}deg)`
+                hour.style.transform = `translate(-50%, 0) rotate(${180 + hours * 30}deg)`
+
+                minuted = 180 + minutes * 6
+                houred = 180 + hours * 30
+                flag = false
+
+            } else {
+                minuted += (1 / 10)
+                houred += (1 / 600)
+
+                second.style.transform = `translate(-50%, 0) rotate(${180 + seconds * 6}deg)`
+                minute.style.transform = `translate(-50%, 0) rotate(${minuted}deg)`
+                hour.style.transform = `translate(-50%, 0) rotate(${houred}deg)`
+            }
+
+        }
+
+        let start = setInterval(timer, 1000)
+    </script>
+</body>
+
+</html>
