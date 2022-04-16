@@ -16,6 +16,10 @@
             box-sizing: border-box;
         }
 
+        body {
+            background: rgb(247, 240, 236);
+        }
+
         .circle {
             height: 300px;
             width: 300px;
@@ -29,9 +33,14 @@
             left: 0;
             margin: auto;
 
-            background: rgb(218, 185, 185);
+            /* border-radius: 50%; */
+            background: rgb(247, 240, 236);
 
-            filter: drop-shadow(1px 1px 4px rgb(144, 132, 118));
+            box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.313),
+                -4px 4px 4px rgba(0, 0, 0, 0.24),
+                -10px 10px 20px rgba(0, 0, 0, 0.201),
+                2px -2px 10px rgba(255, 255, 255, 0.769),
+                4px -4px 0px rgba(255, 255, 255, 0.491);
         }
 
 
@@ -48,7 +57,7 @@
             transform: translate(-50%, -50%);
 
             position: absolute;
-            background-color: rgba(48, 45, 42, 0.504);
+            background-color: rgb(48, 45, 42);
 
             z-index: 6;
         }
@@ -70,10 +79,27 @@
 
         }
 
+        #second2 {
+            height: 130px;
+            width: 10px;
+
+
+            top: 50%;
+            left: 50%;
+            transform-origin: 50% 0%;
+            /* 不給rotate會歪掉欸，好怪，為啥*/
+            transform: translate(-50%, 0) rotate(0deg);
+
+
+            position: absolute;
+            background-color: rgb(247, 240, 236);
+
+        }
+
         #minute {
 
 
-            height: 140px;
+            height: 130px;
             width: 5px;
             border-radius: 10%;
 
@@ -84,7 +110,24 @@
             transform: translate(-50%, 0) rotate(0deg);
 
 
-            background-color: rgb(133, 255, 46);
+            background-color: rgb(0, 0, 0);
+        }
+
+        #minute2 {
+
+
+            height: 120px;
+            width: 10px;
+            border-radius: 10%;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-origin: 50% 0%;
+            transform: translate(-50%, 0) rotate(0deg);
+
+
+            background-color: rgb(247, 240, 236);
         }
 
         #hour {
@@ -102,6 +145,22 @@
 
             background-color: rgb(0, 0, 0);
         }
+
+        #hour2 {
+            content: '';
+
+            height: 60px;
+            width: 10px;
+            border-radius: 10%;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-origin: 50% 0%;
+            transform: translate(-50%, 0) rotate(0deg);
+
+            background-color: rgb(247, 240, 236);
+        }
     </style>
 </head>
 
@@ -110,13 +169,19 @@
     <div class="circle">
         <div class="point"></div>
         <div id="second"></div>
+        <div id="second2"></div>
         <div id="minute"></div>
+        <div id="minute2"></div>
         <div id="hour"></div>
+        <div id="hour2"></div>
     </div>
     <script>
         let flag = true
         var minuted = 0
         var houred = 0
+
+        var minuted2 = 0
+        var houred2 = 0
         function timer() {
             const now = new Date()
 
@@ -127,6 +192,9 @@
             const second = document.getElementById('second')
             const minute = document.getElementById('minute')
             const hour = document.getElementById('hour')
+            const second2 = document.getElementById('second2')
+            const minute2 = document.getElementById('minute2')
+            const hour2 = document.getElementById('hour2')
 
 
             // 因為我初始是在180所以要再補180歸零，再加上數值。
@@ -137,6 +205,9 @@
                 second.style.transform = `translate(-50%, 0) rotate(${180 + seconds * 6}deg)`
                 minute.style.transform = `translate(-50%, 0) rotate(${180 + minutes * 6}deg)`
                 hour.style.transform = `translate(-50%, 0) rotate(${180 + hours * 30}deg)`
+                second2.style.transform = `translate(-50%, 0) rotate(${180 + seconds * 6}deg)`
+                minute2.style.transform = `translate(-50%, 0) rotate(${180 + minutes * 6}deg)`
+                hour2.style.transform = `translate(-50%, 0) rotate(${180 + hours * 30}deg)`
 
                 minuted = 180 + minutes * 6
                 houred = 180 + hours * 30
@@ -149,6 +220,9 @@
                 second.style.transform = `translate(-50%, 0) rotate(${180 + seconds * 6}deg)`
                 minute.style.transform = `translate(-50%, 0) rotate(${minuted}deg)`
                 hour.style.transform = `translate(-50%, 0) rotate(${houred}deg)`
+                second2.style.transform = `translate(-50%, 0) rotate(${180 + seconds * 6}deg)`
+                minute2.style.transform = `translate(-50%, 0) rotate(${minuted}deg)`
+                hour2.style.transform = `translate(-50%, 0) rotate(${houred}deg)`
             }
 
         }
