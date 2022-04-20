@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clock</title>
+    <link rel="stylesheet" href="./css/obnoxious.css">
     <style>
         *,
         *::before,
@@ -17,12 +18,14 @@
         }
 
         body {
-            background: rgb(247, 240, 236);
+            overflow: hidden;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.052) 51%, rgba(255, 255, 255, 0) 52%) repeat-x left top/60px 2000px,
+                linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.052) 51%, rgba(255, 255, 255, 0) 52%) repeat-y left top/ 2000px 60px;
         }
 
-        .circle {
-            height: 300px;
-            width: 300px;
+        #circle {
+            height: 500px;
+            width: 500px;
             /* border-radius: 50%; */
 
 
@@ -32,24 +35,126 @@
             bottom: 0;
             left: 0;
             margin: auto;
+            border: 1px solid rgb(255, 81, 0);
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center,
+                    rgba(46, 118, 75, 0) 0%, rgba(46, 118, 75, 0) 50%,
+                    rgb(228, 228, 228) 50%, rgb(228, 228, 228) 50.5%,
+                    rgba(46, 118, 75, 0) 50.5%, rgba(39, 125, 73, 0) 64.5%,
+                    rgb(128, 128, 128) 64.5%, rgb(128, 128, 128) 65%,
+                    rgba(34, 215, 215, 0) 65%, rgba(34, 215, 215, 0) 100%);
+            ;
 
-            /* border-radius: 50%; */
-            background: rgb(247, 240, 236);
-
-            box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.313),
-                -4px 4px 4px rgba(0, 0, 0, 0.24),
-                -10px 10px 20px rgba(0, 0, 0, 0.201),
-                2px -2px 10px rgba(255, 255, 255, 0.769),
-                4px -4px 0px rgba(255, 255, 255, 0.491);
         }
 
 
+        #clock_word {
+            text-align: center;
+            line-height: 150px;
+            font-size: 45px;
+            width: 300px;
+            height: 300px;
+            left: 50%;
+            top: -28%;
+            transform: translate(-50%, 0);
+            position: absolute;
+        }
 
+        #circle2 {
+            height: 1400px;
+            width: 1400px;
+
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            border-radius: 50%;
+
+        }
+
+        li {
+            width: 1px;
+            height: 10px;
+            background: rgb(127, 127, 127);
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform-origin: 0% 700px;
+        }
+
+        #circle3 {
+            height: 1200px;
+            width: 1200px;
+
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            border-radius: 50%;
+        }
+
+        ul {
+            width: 1px;
+            height: 40px;
+            background: black;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform-origin: 0% 600px;
+        }
+
+        #circle3 div {
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            width: 1000px;
+            height: 1000px;
+            /* 置中 */
+            /* 寬度 */
+            border: 1px solid #fff;
+            border-radius: 50%;
+            animation: circle-ring3 3s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: rgb(255, 106, 0) transparent transparent transparent;
+        }
+
+        #circle3 div:nth-child(1) {
+
+            animation-delay: -0.45s;
+        }
+
+        #circle3 div:nth-child(2) {
+            animation-delay: -0.3s;
+        }
+
+        #circle3 div:nth-child(3) {
+            border-color: rgb(128, 128, 128) transparent transparent transparent;
+            width: 950px;
+            height: 950px;
+            animation-delay: -0.15s;
+        }
+
+        @keyframes circle-ring3 {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
 
 
         .point {
-            height: 10px;
-            width: 10px;
+            height: 4px;
+            width: 4px;
             /* border-radius: 50%; */
 
             top: 50%;
@@ -58,13 +163,13 @@
 
             position: absolute;
             background-color: rgb(48, 45, 42);
-
+            border-radius: 50%;
             z-index: 6;
         }
 
         #second {
-            height: 140px;
-            width: 5px;
+            height: 250px;
+            width: 1px;
 
 
             top: 50%;
@@ -75,15 +180,45 @@
 
 
             position: absolute;
-            background: linear-gradient(rgba(255, 50, 50, 0) 90%, rgb(255, 50, 50) 90%);
+            background: linear-gradient(rgba(255, 50, 50, 0) 90%, rgb(255, 81, 0) 90%);
+            background: rgb(255, 81, 0);
+            /* border: 4px dashed black;
+            border-image: linear-gradient(225deg, #808080, #7c7c7c); */
+        }
 
+        #second::after {
+            content: '';
+            height: 10px;
+            width: 10px;
+            position: absolute;
+
+            border-style: solid;
+            border-width: 0 10px 10px 10px;
+            border-color: transparent transparent rgb(255, 81, 0);
+
+            top: 110%;
+            transform: translate(-50%, 0%);
+            background: rgba(255, 81, 0, 0);
+        }
+
+        #second::before {
+            content: '';
+            height: 50px;
+            width: 50px;
+            position: absolute;
+
+
+
+            top: 100%;
+            transform: translate(-50%, 0%);
+            background: rgba(255, 81, 0, 0);
         }
 
         #minute {
 
 
-            height: 130px;
-            width: 5px;
+            height: 200px;
+            width: 1px;
             border-radius: 10%;
 
             position: absolute;
@@ -93,14 +228,15 @@
             transform: translate(-50%, 0) rotate(0deg);
 
 
-            background: linear-gradient(rgba(0, 0, 0, 0) 90%, rgb(0, 0, 0) 90%);
+            /* background: linear-gradient(rgba(0, 0, 0, 0) 90%, rgb(0, 0, 0) 90%); */
+            background: black;
         }
 
         #hour {
             content: '';
 
-            height: 70px;
-            width: 5px;
+            height: 130px;
+            width: 1px;
             border-radius: 10%;
 
             position: absolute;
@@ -110,25 +246,53 @@
             transform: translate(-50%, 0) rotate(0deg);
 
             background: linear-gradient(rgba(0, 0, 0, 0) 80%, rgb(0, 0, 0) 80%);
+            background: black;
+        }
+
+        .big-circle {
+            height: 1200px;
+            width: 1200px;
+
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+
+            transform: translate(0%, 40%);
+            border-radius: 50%;
+            border: 1px solid black;
+            z-index: -10;
         }
     </style>
 </head>
 
 <body>
     <!-- 秒針接收 -->
-    <div class="circle">
+    <div id="circle2">
+        <li></li>
+    </div>
+
+    <div id="circle3">
+        <div></div>
+        <div></div>
+        <div></div>
+        <ul></ul>
+    </div>
+    <div id="circle">
+        <p id="clock_word" class="animated  fontalicious"></p>
         <div class="point"></div>
         <div id="second"></div>
         <div id="minute"></div>
         <div id="hour"></div>
     </div>
+    <!-- <div class="big-circle"></div> -->
     <script>
         let flag = true
         var minuted = 0
         var houred = 0
-
-        var minuted2 = 0
-        var houred2 = 0
+        let j = 0
         function timer() {
             const now = new Date()
 
@@ -152,20 +316,54 @@
 
                 minuted = 180 + minutes * 6
                 houred = 180 + hours * 30
+
                 flag = false
 
             } else {
                 minuted += (1 / 10)
-                houred += (1 / 600)
+                houred += (1 / 60)
 
                 second.style.transform = `translate(-50%, 0) rotate(${180 + seconds * 6}deg)`
                 minute.style.transform = `translate(-50%, 0) rotate(${minuted}deg)`
                 hour.style.transform = `translate(-50%, 0) rotate(${houred}deg)`
             }
 
+            let clock_word = document.getElementById('clock_word')
+            let hoursValue = (((now.getHours()) % 12 < 10) ? '0' : '') + ((now.getHours()) % 12)
+            let minutesValue = ((now.getMinutes() < 10) ? '0' : '') + (now.getMinutes())
+            let secondsValue = ((now.getSeconds() < 10) ? '0' : '') + (now.getSeconds())
+            if (now.getHours() > 12) {
+                clock_word.innerHTML = (hoursValue + ":" + minutesValue + ":" + secondsValue + ' PM')
+            } else {
+                clock_word.innerHTML = (hoursValue + ":" + minutesValue + ":" + secondsValue + ' AM')
+            }
+
+            j++
         }
 
         let start = setInterval(timer, 1000)
+
+
+        var oUl = document.getElementById('circle2');
+
+        for (var i = 0; i < 30; i++) {
+            var oLi = document.createElement('li');
+            oLi.style.transform = 'rotate(' + i * 12 + 'deg)';
+            oUl.appendChild(oLi);
+        }
+
+        var oUl2 = document.getElementById('circle3');
+
+        for (var i = 0; i < 271; i++) {
+            var oLi2 = document.createElement('ul');
+            if (i % 30 == 0) {
+                oLi2.style.backgroundColor = '#ff5100'
+                oLi2.style.width = 1.5 + 'px'
+                oLi2.style.height = 60 + 'px'
+            }
+            oLi2.style.transform = 'rotate(' + i * 1 + 'deg)';
+            oUl2.appendChild(oLi2);
+        }
     </script>
 </body>
 
