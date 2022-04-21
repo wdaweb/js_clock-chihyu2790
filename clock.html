@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clock</title>
+    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/obnoxious.css">
     <style>
         *,
@@ -19,8 +20,12 @@
 
         body {
             overflow: hidden;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.052) 51%, rgba(255, 255, 255, 0) 52%) repeat-x left top/60px 2000px,
-                linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.052) 51%, rgba(255, 255, 255, 0) 52%) repeat-y left top/ 2000px 60px;
+            background:
+                linear-gradient(90deg, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.1) 51%, rgba(255, 255, 255, 0) 52%) repeat-x left top/60px 2000px,
+                linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.1) 51%, rgba(255, 255, 255, 0) 52%) repeat-y left top/ 2000px 60px,
+                /* linear-gradient(rgba(57, 11, 156, 0), rgba(46, 9, 124, 0.507)) left top/1500px 1500px, */
+                linear-gradient(rgba(46, 9, 124, 0), rgba(52, 51, 80, 0.507)) left top/1500px 1500px;
+
         }
 
         #circle {
@@ -35,29 +40,59 @@
             bottom: 0;
             left: 0;
             margin: auto;
-            border: 1px solid rgb(255, 81, 0);
+            border: 2px solid rgb(255, 81, 0);
             border-radius: 50%;
             background: radial-gradient(ellipse at center,
-                    rgba(46, 118, 75, 0) 0%, rgba(46, 118, 75, 0) 50%,
-                    rgb(228, 228, 228) 50%, rgb(228, 228, 228) 50.5%,
-                    rgba(46, 118, 75, 0) 50.5%, rgba(39, 125, 73, 0) 64.5%,
-                    rgb(128, 128, 128) 64.5%, rgb(128, 128, 128) 65%,
+                    rgba(46, 118, 75, 0) 0%, rgba(46, 118, 75, 0) 46.4%,
+                    #bfbfbf 46.4%, #bfbfbf 47%,
+                    rgba(46, 118, 75, 0) 47%, rgba(39, 125, 73, 0) 60%,
+                    #fff 60%, #fff 65%,
                     rgba(34, 215, 215, 0) 65%, rgba(34, 215, 215, 0) 100%);
             ;
+            /* background: lawngreen; */
 
         }
 
+        #circle::after {
+            content: '';
+            position: absolute;
+            height: 7px;
+            width: 2px;
+            top: 50%;
+            right: 0;
+            bottom: 0;
+            left: 50%;
+            background: #333;
+            transform: translate(-50%, -50%) skew(-40deg, 0);
+        }
+
+        #circle::before {
+            content: '';
+            position: absolute;
+            height: 7px;
+            width: 2px;
+            top: 50%;
+            right: 0;
+            bottom: 0;
+            left: 50%;
+            background: #333;
+            transform: translate(-50%, -50%) skew(40deg, 0);
+        }
 
         #clock_word {
             text-align: center;
-            line-height: 150px;
-            font-size: 45px;
-            width: 300px;
-            height: 300px;
+            line-height: 45px;
+            font-size: 24px;
+            width: 200px;
+            height: 40px;
             left: 50%;
-            top: -28%;
+            top: -15%;
             transform: translate(-50%, 0);
+            color: white;
             position: absolute;
+            font-family: 'Electrolize', sans-serif;
+            background: linear-gradient(135deg, transparent 5px, rgb(255, 106, 0) 0);
+            opacity: 0.8;
         }
 
         #circle2 {
@@ -75,9 +110,9 @@
         }
 
         li {
-            width: 1px;
-            height: 10px;
-            background: rgb(127, 127, 127);
+            width: 2px;
+            height: 5px;
+            background: #404040;
             position: absolute;
             left: 50%;
             top: 0;
@@ -98,13 +133,14 @@
         }
 
         ul {
-            width: 1px;
-            height: 40px;
-            background: black;
+            width: 2px;
+            height: 20px;
+            background: #999;
             position: absolute;
             left: 50%;
             top: 0;
             transform-origin: 0% 600px;
+            opacity: 0.7;
         }
 
         #circle3 div {
@@ -117,8 +153,6 @@
             margin: auto;
             width: 1000px;
             height: 1000px;
-            /* 置中 */
-            /* 寬度 */
             border: 1px solid #fff;
             border-radius: 50%;
             animation: circle-ring3 3s cubic-bezier(0.5, 0, 0.5, 1) infinite;
@@ -135,7 +169,8 @@
         }
 
         #circle3 div:nth-child(3) {
-            border-color: rgb(128, 128, 128) transparent transparent transparent;
+            border: 2px solid #fff;
+            border-color: rgb(38, 38, 38) transparent transparent transparent;
             width: 950px;
             height: 950px;
             animation-delay: -0.15s;
@@ -153,23 +188,87 @@
 
 
         .point {
-            height: 4px;
-            width: 4px;
+            height: 30px;
+            width: 30px;
             /* border-radius: 50%; */
 
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) rotate(45deg);
 
             position: absolute;
-            background-color: rgb(48, 45, 42);
-            border-radius: 50%;
+            /* border: 5px solid rgb(53, 53, 53); */
             z-index: 6;
+            animation: animate 1s linear infinite,
+                rotate 3s linear infinite;
+        }
+
+        .point span {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            /* animation: rotate 1s linear infinite; */
+        }
+
+        .point span:nth-child(1) {
+            top: 0;
+            left: 0;
+            border-top: 5px solid #fff;
+            border-left: 5px solid #fff;
+        }
+
+        .point span:nth-child(2) {
+            top: 0;
+            right: 0;
+            border-top: 5px solid #fff;
+            border-right: 5px solid #fff;
+
+        }
+
+        .point span:nth-child(3) {
+            bottom: 0;
+            right: 0;
+            border-bottom: 5px solid #fff;
+            border-right: 5px solid #fff;
+        }
+
+        .point span:nth-child(4) {
+            bottom: 0;
+            left: 0;
+            border-bottom: 5px solid #fff;
+            border-left: 5px solid #fff
+        }
+
+        @keyframes animate {
+            0% {
+                width: 30px;
+                height: 30px;
+            }
+
+            10% {
+                width: 30px;
+                height: 30px;
+            }
+
+            50% {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
         }
 
         #second {
             height: 250px;
-            width: 1px;
+            width: 2px;
 
 
             top: 50%;
@@ -180,64 +279,56 @@
 
 
             position: absolute;
-            background: linear-gradient(rgba(255, 50, 50, 0) 90%, rgb(255, 81, 0) 90%);
-            background: rgb(255, 81, 0);
-            /* border: 4px dashed black;
-            border-image: linear-gradient(225deg, #808080, #7c7c7c); */
-        }
-
-        #second::after {
-            content: '';
-            height: 10px;
-            width: 10px;
-            position: absolute;
-
-            border-style: solid;
-            border-width: 0 10px 10px 10px;
-            border-color: transparent transparent rgb(255, 81, 0);
-
-            top: 110%;
-            transform: translate(-50%, 0%);
-            background: rgba(255, 81, 0, 0);
+            background: linear-gradient(rgba(255, 50, 50, 0) 72%, rgb(255, 81, 0) 72%, rgb(255, 81, 0) 80%, rgba(255, 50, 50, 0) 80%);
         }
 
         #second::before {
             content: '';
-            height: 50px;
-            width: 50px;
+            height: 250px;
+            width: 2px;
             position: absolute;
 
 
-
-            top: 100%;
+            top: -100%;
             transform: translate(-50%, 0%);
-            background: rgba(255, 81, 0, 0);
+            background: linear-gradient(rgba(255, 50, 50, 0) 20%, rgb(255, 81, 0) 20%, rgb(255, 81, 0) 28%, rgba(255, 50, 50, 0) 28%);
         }
 
         #minute {
 
 
-            height: 200px;
-            width: 1px;
-            border-radius: 10%;
+            height: 150px;
+            width: 3px;
 
-            position: absolute;
-            left: 50%;
+
             top: 50%;
+            left: 50%;
             transform-origin: 50% 0%;
+            /* 不給rotate會歪掉欸，好怪，為啥*/
             transform: translate(-50%, 0) rotate(0deg);
 
 
-            /* background: linear-gradient(rgba(0, 0, 0, 0) 90%, rgb(0, 0, 0) 90%); */
-            background: black;
+            position: absolute;
+            background: linear-gradient(rgba(0, 0, 0, 0) 88%, #333 88%);
+
+
+        }
+
+        #minute::before {
+            content: '';
+            height: 150px;
+            width: 3px;
+            position: absolute;
+
+
+            top: -100%;
+            transform: translate(-50%, 0%);
+            background: linear-gradient(#333 12%, rgba(0, 0, 0, 0) 12%);
         }
 
         #hour {
-            content: '';
-
-            height: 130px;
-            width: 1px;
-            border-radius: 10%;
+            height: 150px;
+            width: 3px;
 
             position: absolute;
             left: 50%;
@@ -245,49 +336,372 @@
             transform-origin: 50% 0%;
             transform: translate(-50%, 0) rotate(0deg);
 
-            background: linear-gradient(rgba(0, 0, 0, 0) 80%, rgb(0, 0, 0) 80%);
-            background: black;
+            background: linear-gradient(rgba(0, 0, 0, 0) 88%, #333 88%);
+            /* background: black; */
         }
 
-        .big-circle {
-            height: 1200px;
-            width: 1200px;
+        #hour::before {
+            content: '';
+            height: 150px;
+            width: 3px;
+            position: absolute;
+
+
+            top: -100%;
+            transform: translate(-50%, 0%);
+            background: linear-gradient(#333 12%, rgba(0, 0, 0, 0) 12%);
+        }
+
+        .tri {
+            height: 20px;
+            width: 20px;
+            position: absolute;
+
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 0 10px 11px;
+            border-color: transparent transparent transparent rgb(255, 81, 0);
+
+            top: 50%;
+            left: -15%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 81, 0, 0);
+        }
+
+        .half {
 
             position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            margin: auto;
 
-            transform: translate(0%, 40%);
+            width: 550px;
+            height: 550px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(90deg);
+            border: 5px solid #fff;
             border-radius: 50%;
-            border: 1px solid black;
-            z-index: -10;
+            border-color: #333 transparent transparent transparent;
+        }
+
+        .inner-word {
+            position: absolute;
+            width: 150px;
+            height: 75px;
+            top: 35%;
+            left: 57%;
+            transform: translate(-50%, -50%);
+            /* background: rgba(240, 128, 128, 0.478); */
+
+            padding-left: 25px;
+            padding-top: 22px;
+            line-height: 16px;
+            font-family: 'Electrolize', sans-serif;
+            font-weight: 1000;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+        }
+
+        .inner-word div {
+            position: absolute;
+
+            width: 40px;
+            height: 20px;
+            top: 50%;
+            left: 1%;
+            transform: translate(0%, -50%) rotate(90deg);
+            border: 5px solid #fff;
+            border-color: transparent transparent rgb(255, 81, 0) transparent;
+
+        }
+
+        .inner-word #day-night {
+            font-weight: 700;
+            color: rgb(58, 58, 58);
+            font-size: 1px;
+        }
+
+        .loading {
+            position: absolute;
+            width: 500px;
+            height: 5px;
+            top: 105%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Electrolize', sans-serif;
+            font-weight: 1000;
+            font-size: 10px;
+        }
+
+        .loading .line-box {
+            width: 100%;
+            height: 100%;
+            background: #333;
+        }
+
+        .line {
+            height: 100%;
+            background: rgb(255, 81, 0);
+            animation: loading 10s linear infinite;
+        }
+
+        .line2 {
+            margin-top: 5px;
+            height: 90%;
+            width: 20%;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0) 2%, #333 2%, #333 5%, rgba(0, 0, 0, 0) 5%),
+                linear-gradient(90deg, rgba(0, 0, 0, 0) 10%, #000 10%, #000 16%, rgba(0, 0, 0, 0) 16%),
+                linear-gradient(90deg, rgba(0, 0, 0, 0) 20%, rgb(255, 81, 0) 20%, rgb(255, 81, 0) 26%, rgba(0, 0, 0, 0) 26%),
+                linear-gradient(90deg, rgba(0, 0, 0, 0) 30%, #fff 30%);
+        }
+
+        @keyframes loading {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        .twice {
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(90deg);
+            border: 30px solid #fff;
+            border-radius: 50%;
+            border-color: transparent #333 #333 transparent;
+        }
+
+        .box-circling {
+            height: 300px;
+            width: 800px;
+
+            position: absolute;
+            top: 50%;
+
+            left: 50%;
+            margin: auto;
+            transform: translate(-50%, -50%);
+            /* background: lightcoral; */
+        }
+
+        .loader.--7::before,
+        .loader.--7::after {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #333;
+        }
+
+        .loader.--7::before {
+            bottom: 0%;
+            right: 0%;
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0);
+            border: 2px solid #333;
+            animation: loader-8 20s ease infinite;
+        }
+
+        .loader.--7::after {
+            top: 0%;
+            left: 0%;
+
+            animation: loader-7 20s ease infinite;
+        }
+
+        @keyframes loader-7 {
+
+            0%,
+            100% {
+                top: 0%;
+            }
+
+            50% {
+                top: 100%;
+            }
+        }
+
+        @keyframes loader-8 {
+
+            0%,
+            100% {
+                bottom: 0%;
+            }
+
+            50% {
+                bottom: 100%;
+            }
+        }
+
+        .sidebar {
+            position: fixed;
+            height: 600px;
+            width: 50px;
+            /* background: lightcoral; */
+            right: 3%;
+            top: 2%;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            opacity: 0.5;
+        }
+
+        .sidebar div {
+            position: relative;
+            margin: 0 0 10px 0;
+            height: 50px;
+            /* border: 2px solid #bbb; */
+            color: #333;
+            text-align: center;
+            line-height: 50px;
+            font-weight: 1000;
+            font-size: 14px;
+            font-family: 'Electrolize', sans-serif;
+            /* border: 2px solid #333; */
+            background: #fff;
+        }
+
+        .sidebar::after {
+            content: '';
+            position: absolute;
+            top: 0%;
+            left: 115%;
+
+            height: 80vh;
+            width: 2px;
+            background: rgb(255, 81, 0);
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0%;
+            left: 125%;
+
+            height: 80vh;
+            width: 5px;
+            background: #333;
+        }
+
+        .sidebar div::after {
+            content: '';
+            position: absolute;
+            height: 50px;
+            top: -4%;
+            left: -20%;
+            width: 3px;
+            background: #fff;
+
+        }
+
+        .sidebar div:hover,
+        .sidebar div:hover::after {
+            background: rgb(255, 81, 0);
+            color: white;
+        }
+
+        .leftbar {
+            position: fixed;
+            height: 200px;
+            width: 200px;
+            /* background: lightcoral; */
+            left: 3%;
+            top: 2%;
+            list-style: none;
+            margin-bottom: 2px;
+            padding: 0;
+            box-sizing: border-box;
+            padding: 5px;
+            opacity: 0.5;
+            line-height: 20px;
+            font-size: 14px;
+            background: linear-gradient(-45deg, transparent 10px, rgba(255, 255, 255, 0.785) 0);
+            filter: drop-shadow(1px 1px 0px #333);
+            box-shadow: -1px -1px #333;
+
+        }
+
+        .leftbar div:first-child {
+            opacity: 1;
+            color: rgb(0, 0, 0);
+            line-height: 20px;
+            font-weight: 1000;
+            font-size: 14px;
+            font-family: 'Electrolize', sans-serif;
+            border-bottom: 1px solid rgb(0, 0, 0);
         }
     </style>
 </head>
 
 <body>
-    <!-- 秒針接收 -->
+    <!-- 外點 -->
     <div id="circle2">
         <li></li>
     </div>
-
+    <!-- 刻度&旋轉動畫 -->
     <div id="circle3">
         <div></div>
         <div></div>
         <div></div>
         <ul></ul>
     </div>
+    <!-- 中心數字&指針 -->
+    <div class="leftbar">
+        <div>Homework</div>
+        <div id="nownow">1970-01-01 00:00:00 UTC</div>
+        <div>CSS/JS/HTML</div>
+        <div>Исаáк Ю́дович Ази́мов</div>
+        <div>Isaac Asimov color </div>
+        <div id="aorn">AM</div>
+        <div id="dated">17:09:189</div>
+    </div>
+    <div class="sidebar">
+        <div>DIV.1</div>
+        <div>DIV.2</div>
+        <div>DIV.3</div>
+        <div>DIV.4</div>
+        <div>DIV.5</div>
+        <div>DIV.6</div>
+        <div>DIV.7</div>
+    </div>
     <div id="circle">
-        <p id="clock_word" class="animated  fontalicious"></p>
-        <div class="point"></div>
+        <div class="half"></div>
+        <div class="tri"></div>
+        <p id="clock_word" class=""></p>
+        <div class="inner-word">
+            <div></div>
+            <p id="day-night"></p>
+            <p id="timing"></p>
+        </div>
+        <div class="loading">
+            <p>- LOAD1NG</p>
+            <div class="line-box">
+                <div class="line"></div>
+                <div class="line2"></div>
+            </div>
+        </div>
+        <div class="box-circling">
+            <i class="loader --7"></i>
+        </div>
+        <div class="point">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="twice"></div>
         <div id="second"></div>
         <div id="minute"></div>
         <div id="hour"></div>
     </div>
-    <!-- <div class="big-circle"></div> -->
     <script>
         let flag = true
         var minuted = 0
@@ -299,10 +713,13 @@
             const seconds = now.getSeconds()
             const minutes = now.getMinutes()
             const hours = now.getHours()
+            const millons = now.getMilliseconds()
 
             const second = document.getElementById('second')
             const minute = document.getElementById('minute')
             const hour = document.getElementById('hour')
+            const aorn = document.getElementById('aorn')
+            const dated = document.getElementById('dated')
 
 
             // 因為我初始是在180所以要再補180歸零，再加上數值。
@@ -329,13 +746,24 @@
             }
 
             let clock_word = document.getElementById('clock_word')
+            let daynight = document.getElementById('day-night')
+            let timing = document.getElementById('timing')
+
             let hoursValue = (((now.getHours()) % 12 < 10) ? '0' : '') + ((now.getHours()) % 12)
             let minutesValue = ((now.getMinutes() < 10) ? '0' : '') + (now.getMinutes())
             let secondsValue = ((now.getSeconds() < 10) ? '0' : '') + (now.getSeconds())
             if (now.getHours() > 12) {
                 clock_word.innerHTML = (hoursValue + ":" + minutesValue + ":" + secondsValue + ' PM')
+                daynight.innerHTML = 'PM'
+                timing.innerHTML = hoursValue + "" + minutesValue + "." + secondsValue
+                aorn.innerHTML = 'PM'
+                dated.innerHTML = "-" + hoursValue + "" + minutesValue + "." + secondsValue + "." + millons
             } else {
                 clock_word.innerHTML = (hoursValue + ":" + minutesValue + ":" + secondsValue + ' AM')
+                daynight.innerHTML = 'AM'
+                timing.innerHTML = hoursValue + "" + minutesValue + "." + secondsValue
+                aorn.innerHTML = 'AM'
+                dated.innerHTML = "-" + hoursValue + "" + minutesValue + "." + secondsValue + "." + millons
             }
 
             j++
@@ -346,9 +774,9 @@
 
         var oUl = document.getElementById('circle2');
 
-        for (var i = 0; i < 30; i++) {
+        for (var i = 0; i < 60; i++) {
             var oLi = document.createElement('li');
-            oLi.style.transform = 'rotate(' + i * 12 + 'deg)';
+            oLi.style.transform = 'rotate(' + i * 6 + 'deg)';
             oUl.appendChild(oLi);
         }
 
@@ -358,8 +786,9 @@
             var oLi2 = document.createElement('ul');
             if (i % 30 == 0) {
                 oLi2.style.backgroundColor = '#ff5100'
-                oLi2.style.width = 1.5 + 'px'
-                oLi2.style.height = 60 + 'px'
+
+                oLi2.style.height = 40 + 'px'
+                oLi2.style.width = 3 + 'px'
             }
             oLi2.style.transform = 'rotate(' + i * 1 + 'deg)';
             oUl2.appendChild(oLi2);
